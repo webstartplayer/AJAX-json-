@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>	
+		<script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript" charset="UTF-8"></script>
+	
+		<style type="text/css">
+
+		</style>
+		
+		<script>
+			function btn(){
+				var x = document.getElementById("text").value;
+				var xmlhttp;
+				if(XMLHttpRequest){
+					xmlhttp = new XMLHttpRequest();
+				}else if(ActiveXObject()){
+					xmlhttp = new ActiveXObject();
+					}
+				xmlhttp.onreadystatechange = function(){
+					if(xmlhttp.readyState==4&&xmlhttp.status==200){
+						var j = xmlhttp.responseText;
+						var object = eval("("+j+")");
+						if(x==""){
+						document.getElementById("box_1").innerHTML=object.person;
+						}else{
+							document.getElementById("box_1").innerHTML="创建成功";
+						}
+					}
+				}
+				xmlhttp.open("GET","AJAX.json","true");
+				xmlhttp.send(null);
+				}
+		</script>
+	</head>
+
+	<body>
+            <div>
+			<input type="text" id="text" name="text" />
+		    <input type="button" value="测试" onclick="btn()" />
+            </div>
+			
+			<div id="box_1">
+				
+			</div>
+	</body>
+	
+</html>
